@@ -1,0 +1,454 @@
+
+
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+
+  <meta charset="UTF-8">
+  
+
+<meta name="apple-mobile-web-app-title" content="Vrs note maker">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- add icon link -->
+<link rel = "icon" href = 
+"https://lh3.googleusercontent.com/KaIJkZc2OFZ1WUroszj7QM4GVskVXw-QcQS31MAPsrRo6aOinYM9s_8RWHVHQP_JvCd6EvPD4-LoNz5JPMegVnZzfHEF-742Q1y19hay" 
+        type = "image/x-icon">
+
+
+  <title>Vrs - Note Taker App</title>
+  <link href="https://opensource.keycdn.com/fontawesome/4.7.0/font-awesome.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  
+  
+  
+  <style type="text/css">h1{ color:rgb(75, 30, 0);text-align:center}
+body {
+      font-family: 'Poppins';font-size: 22px;
+  
+  margin: 0;
+  padding: 0;
+  font-size: 18px;
+}
+
+* {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+}
+
+#wrapper {
+  width: 100%;
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+#note-editor {
+  padding-bottom: 12px;
+  margin-bottom: 48px;
+  border-bottom: 1px solid rgba(0,0,0,0.2);
+  opacity: 1;
+  transition: all 0.25s ease-out;
+}
+
+#note-editor.hide {
+  opacity: 0;
+}
+
+label {
+  display: block;
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+input {
+  font-size: 16px;
+  display: block;
+  width: 300px;  
+  margin-bottom: 15px;
+  padding: 8px 6px;
+}
+
+input.is-empty {
+  border: 2px solid tomato;
+}
+
+textarea {
+  font-size: 16px;
+  display: block;
+  margin-bottom: 15px;
+  padding: 8px 6px;
+}
+
+textarea.is-empty {
+  border: 1px solid tomato;
+}
+
+#button {
+  position: relative;
+}
+
+#error {
+  color: tomato;
+  position: absolute;
+  top: 12px;
+  left: 150px;
+  line-height: 16px;
+}
+
+select {
+  display: block;
+  margin-bottom: 15px;
+  width: 175px;
+  padding: 0;
+  height: 24px;
+}
+
+button {
+  position: relative;
+  display: block;
+  width: 100px;
+  margin-top: 40px;
+  padding: 12px 8px;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  outline: none;
+  border:0;
+  box-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+  background: dodgerblue;
+  color: white;
+  font-size: 14px;
+}
+
+button:active {
+  box-shadow: 0px 0px 1px rgba(0,0,0,0.1);
+  top: 1px;
+  left: 1px;
+}
+
+ul {
+  padding-left: 0;
+}
+
+#notes-section {
+  opacity: 1;
+  visibility: visible;
+  transition: all 0.25s ease-out;
+}
+
+#notes-section.hide {
+  opacity: 0;
+  visibility: hidden;
+}
+
+#notes li {
+  position: relative;
+  list-style-type: none;
+  display: block;
+  float: left;
+  width: 340px;
+  height: 250px;
+  padding: 8px 12px;
+  border-radius: 5px;
+  margin: 0 5px 12px;
+}
+
+#notes li.red {
+  background: pink;
+}
+
+#notes li.orange{
+  background: rgb(253, 165, 2);
+}
+
+#notes li.blue {
+  background: lightskyblue;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 24px;
+  left: 0;
+  background: rgba(255,255, 255, 0.4);
+  padding: 5px 0;
+}
+
+.edit {
+  position: absolute;
+  height: 24px;
+  left: 12px;
+  line-height: 24px;
+  cursor: pointer;
+}
+
+.delete {
+  float: right;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  cursor: pointer;
+}
+
+i:before {
+  font-size: 18px;
+}
+
+.note-title {
+  font-size: 1.5em;
+  font-weight: bold;
+  display: block;
+  width: 100%;
+
+}
+
+.note-message {
+  display: block;
+  width: 100%;
+}
+
+
+</style>
+
+  <script>
+  window.console = window.console || function(t) {};
+</script>
+
+  
+  
+  <script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+
+
+</head>
+
+<body translate="no" >
+  <body style="background-image: url(https://www.xmple.com/wallpaper/white-gradient-linear-highlight-orange-1920x1080-c2-ffffff-ffa500-l-67-a-225-f-21.svg
+); background-size: 500% ; no-repeat">
+  <div id="wrapper">
+    <div id="note-editor">
+      <h1 id="note-editor-title">Create Note</h1>
+      <label>Title:</label>
+      <input type="text" id="title" name="title" />
+      <label>Body:</label>
+      <textarea rows="10" cols="42" id="message" name="message"></textarea>
+      <label>Color:</label>
+      <select id="color" name="color">
+        <option value="red" selected>Red</option>
+        <option value="orange">orange</option>
+        <option value="blue">Blue</option>
+      </select>
+      <div id="button">
+        <button id="add-btn">Create Note</button>
+        <div id="error"></div>
+      </div>
+    </div>
+
+    <div id="notes-section">
+      <h2>Notes</h2>
+      <ul id="notes"></ul>
+    </div>
+  </div>
+</body>
+    <script src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-1b93190375e9ccc259df3a57c1abc0e64599724ae30d7ea4c6877eb615f89387.js"></script>
+
+  
+      <script id="rendered-js" >
+(function () {
+  'use strict';
+
+  var app = {
+    noteEditor: document.getElementById('note-editor'),
+    noteEditorTitle: document.getElementById('note-editor-title'),
+    title: document.getElementById('title'),
+    message: document.getElementById('message'),
+    color: document.getElementById('color'),
+    addButton: document.getElementById('add-btn'),
+    errorDisplay: document.getElementById('error'),
+    deleteButton: document.querySelector('.delete'),
+    editButton: document.querySelector('.edit'),
+    notesSection: document.getElementById('notes-section'),
+    notes: document.getElementById('notes'),
+    editMode: false,
+
+    init: function () {
+      app.title.addEventListener('focus', app.clearError);
+      app.message.addEventListener('focus', app.clearError);
+
+      app.title.addEventListener('keypress', app.detectInput);
+      app.message.addEventListener('keypress', app.detectInput);
+
+      app.addButton.addEventListener('click', app.createNote);
+    },
+    detectInput1: function () {
+      if (!app.title.value || !app.message.value) {
+        return;
+      } else {
+        app.addButton.innerText = 'Create Note';
+      }
+    },
+    clearError: function () {
+      app.title.classList.remove('is-empty');
+      app.message.classList.remove('is-empty');
+      app.errorDisplay.innerHTML = '';
+    },
+    createNote: function () {
+      if (!app.title.value || !app.message.value) {
+        if (!app.title.value) {
+          app.title.classList.add('is-empty');
+        }
+        if (!app.message.value) {
+          app.message.classList.add('is-empty');
+        }
+        app.errorDisplay.innerHTML = '<span>*Values required</span>';
+        return;
+      } else {
+        var note = new Object();
+
+        note.title = app.title.value;
+        note.message = app.message.value;
+        note.color = app.color.value;
+
+        app.addNote(note);
+      }
+    },
+    addNote: function (note) {
+      var li = document.createElement('li'),
+      deleteBtn = document.createElement('span'),
+      editBtn = document.createElement('span'),
+      title = document.createElement('span'),
+      message = document.createElement('span'),
+      footer = document.createElement('footer');
+
+      deleteBtn.className = 'delete';
+      deleteBtn.innerHTML = '<i class="fa fa-trash-o"></i>';
+      deleteBtn.addEventListener('click', app.deleteNote);
+
+      title.className = 'note-title';
+      title.innerHTML = note.title;
+
+      message.className = 'note-message';
+      message.innerHTML = note.message;
+
+      editBtn.className = 'edit';
+      editBtn.innerHTML = '<i class="fa fa-pencil-square-o"></i> Edit';
+      editBtn.addEventListener('click', app.editNote);
+
+      footer.appendChild(editBtn);
+
+      li.className = note.color;
+
+      li.appendChild(deleteBtn);
+      li.appendChild(title);
+      li.appendChild(message);
+      li.appendChild(footer);
+
+      app.notes.prepend(li);
+
+      app.title.value = '';
+      app.message.value = '';
+
+      if (!app.editMode) {
+        app.addButton.innerText = 'Create Note';
+      } else {
+        setTimeout(function () {
+          app.addButton.innerText = 'Create Note';
+        }, 200);
+      }
+    },
+    editNote: function () {
+      var li,
+      title,
+      message,
+      color,
+      note = new Object();
+
+      li = this.parentNode.parentNode;
+
+      for (var i = 0; i < li.childNodes.length; i++) {if (window.CP.shouldStopExecution(0)) break;
+        if (li.childNodes[i].className === 'note-title') {
+          title = li.childNodes[i].innerText;
+        }
+      }window.CP.exitedLoop(0);
+
+      for (var i = 0; i < li.childNodes.length; i++) {if (window.CP.shouldStopExecution(1)) break;
+        if (li.childNodes[i].className === 'note-message') {
+          message = li.childNodes[i].innerText;
+        }
+      }window.CP.exitedLoop(1);
+
+      color = li.getAttribute('class');
+
+      note.title = title;
+      note.message = message;
+      note.color = color;
+
+      app.openNote(note);
+
+      setTimeout(function () {
+        li.remove();
+      }, 200);
+    },
+    openNote: function (note) {
+      if (!app.editMode) {
+        app.noteEditor.classList.add('hide');
+        app.notesSection.classList.add('hide');
+
+        setTimeout(function () {
+          app.noteEditorTitle.innerText = 'Edit Note';
+
+          app.addButton.innerText = 'Done';
+          app.addButton.removeEventListener('click', app.createNote);
+          app.addButton.addEventListener('click', app.saveNote);
+
+          app.title.value = note.title;
+          app.message.value = note.message;
+          app.color.value = note.color;
+
+          app.noteEditor.classList.remove('hide');
+          app.editMode = true;
+        }, 200);
+      } else {
+        return;
+      }
+    },
+    saveNote: function () {
+      app.createNote();
+
+      app.noteEditor.classList.add('hide');
+      app.notesSection.classList.add('hide');
+
+      setTimeout(function () {
+        app.noteEditorTitle.innerText = 'Create Note';
+
+        app.addButton.removeEventListener('click', app.saveNote);
+        app.addButton.addEventListener('click', app.createNote);
+
+        app.title.value = '';
+        app.message.value = '';
+
+        app.notesSection.classList.remove('hide');
+        app.noteEditor.classList.remove('hide');
+        app.editMode = false;
+      }, 200);
+    },
+    deleteNote: function () {
+      this.parentNode.remove();
+    } };
+
+
+  app.init();
+
+})();
+//# sourceURL=pen.js
+    </script>
+
+  
+
+</body>
+
+</html>
