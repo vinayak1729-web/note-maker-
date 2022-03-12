@@ -1,5 +1,7 @@
 
 
+
+
 <!DOCTYPE html>
 <html lang="en" >
 
@@ -18,23 +20,22 @@
 
   <title>Vrs - Note Taker App</title>
   <link href="https://opensource.keycdn.com/fontawesome/4.7.0/font-awesome.min.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+ 
   
   
   
-  <style type="text/css">h1{ color:rgb(75, 30, 0);text-align:center}
-body {
-      font-family: 'Poppins';font-size: 22px;
-  
-  margin: 0;
-  padding: 0;
-  font-size: 18px;
-}
+  <style type="text/css">h1{ color:white;text-align:center}
+    body {
+        font-family: 'Poppins';font-size: 28px;
+    }
+    input:focus {
+          background: black;
+             color: Cyan;
+              
+    }
 
-* {
-  font-family: 'Roboto', sans-serif;
-  font-weight: 300;
-}
+
 
 #wrapper {
   width: 100%;
@@ -162,7 +163,7 @@ ul {
 }
 
 #notes li.blue {
-  background: rgb(187, 225, 250);
+  background: lightskyblue;
 }
 
 footer {
@@ -231,7 +232,7 @@ i:before {
 ); background-size: 500% ; no-repeat">
   <div id="wrapper">
     <div id="note-editor">
-      <h1 id="note-editor-title">Create Note</h1>
+      <h1>Note maker</h1>
       <label>Title:</label>
       <input type="text" id="title" name="title" />
       <label>Body:</label>
@@ -240,7 +241,7 @@ i:before {
       <select id="color" name="color">
         <option value="red" selected>Red</option>
         <option value="orange">orange</option>
-        <option value="blue">blue</option>
+        <option value="blue">Blue</option>
       </select>
       <div id="button">
         <button id="add-btn">Create Note</button>
